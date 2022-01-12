@@ -59,8 +59,7 @@ router.post("/deleteRecipe",(req,res)=>{
       res.status(201).end();
     }
     else {
-      res.json(JSON.parse(JSON.stringify(result)));
-      res.status(201).end();
+      res.status(409).end();
     }
     }
   ).catch((e)=>{

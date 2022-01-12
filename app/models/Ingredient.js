@@ -65,7 +65,8 @@ function getAll(){
       "Ingredient.ID_ALLERGEN," +
       "Allergen.NAME as NAMEA," +
       "Allergen.ID_Category as Allergen_ID_Category, URL " +
-      "from `Ingredient` LEFT JOIN Allergen on Ingredient.ID_ALLERGEN=Allergen.ID_ALLERGEN LEFT JOIN A_Category ON Allergen.ID_Category=A_Category.ID_Category;"
+      "from `Ingredient` LEFT JOIN Allergen on Ingredient.ID_ALLERGEN=Allergen.ID_ALLERGEN LEFT JOIN A_Category ON Allergen.ID_Category=A_Category.ID_Category " +
+        "ORDER BY Ingredient.NAME;"
       db.query(sql,(err,result)=>{
         if (err) {
           reject(err);
