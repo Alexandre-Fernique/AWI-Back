@@ -58,13 +58,13 @@ function updateStock(data){
 function getAll(){
   return new Promise((resolve,reject) =>{
     let sql="SELECT ID_INGREDIENT," +
-      "Ingredient.NAME as NAMEI,UNIT," +
+      "Ingredient.NAME as NAME,UNIT," +
       "UNIT_PRICE," +
       "Ingredient.ID_Category as Ingredient_ID_Category," +
       "STOCK," +
-      "Ingredient.ID_ALLERGEN," +
-      "Allergen.NAME as NAMEA," +
-      "Allergen.ID_Category as Allergen_ID_Category, URL " +
+      "JSON_OBJECT('ID',Allergen.ID_ALLERGEN," +
+      "'NAME',Allergen.NAME," +
+      "'ID_Category',Allergen.ID_Category ,'URL',URL) as ALLERGEN " +
       "from `Ingredient` LEFT JOIN Allergen on Ingredient.ID_ALLERGEN=Allergen.ID_ALLERGEN LEFT JOIN A_Category ON Allergen.ID_Category=A_Category.ID_Category " +
         "ORDER BY Ingredient.NAME;"
       db.query(sql,(err,result)=>{

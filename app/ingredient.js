@@ -31,7 +31,10 @@ router.put("/updateIngredient",(req,res)=>{
 
 router.get("/getIngredient",(req,res)=>{
   modelIngredient.getAll().then((result)=>{
-    res.json(JSON.parse(JSON.stringify(result)));
+    for (let i=0;i< result.length;i++){
+      result[i].ALLERGEN = JSON.parse(result[i].ALLERGEN)
+    }
+    res.json(result);
     res.status(200).end();
   })
 })
