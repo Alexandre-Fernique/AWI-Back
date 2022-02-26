@@ -96,7 +96,7 @@ function getAllIOS(){
                 "Ingredient.NAME as NAME,UNIT," +
                 "UNIT_PRICE," +
                 "STOCK," +
-                "JSON_OBJECT('ID',Ingredient.ID_Category," +
+                "JSON_OBJECT('ID_Category',Ingredient.ID_Category," +
                 "'NAME',I_Category.NAME) as CATEGORY," +
                 "JSON_OBJECT('ID',Allergen.ID_ALLERGEN," +
                 "'NAME',Allergen.NAME," +
