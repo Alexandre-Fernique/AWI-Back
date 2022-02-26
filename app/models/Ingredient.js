@@ -58,15 +58,14 @@ function updateStock(data){
 function getAll(){
   return new Promise((resolve,reject) =>{
     let sql="SELECT ID_INGREDIENT," +
-      "Ingredient.NAME as NAME,UNIT," +
+      "Ingredient.NAME as NAMEI,UNIT," +
       "UNIT_PRICE," +
       "Ingredient.ID_Category as Ingredient_ID_Category," +
       "STOCK," +
-      "JSON_OBJECT('ID',Allergen.ID_ALLERGEN," +
-      "'NAME',Allergen.NAME," +
-      "'ID_Category',Allergen.ID_Category ,'URL',URL) as ALLERGEN " +
-      "from `Ingredient` LEFT JOIN Allergen on Ingredient.ID_ALLERGEN=Allergen.ID_ALLERGEN LEFT JOIN A_Category ON Allergen.ID_Category=A_Category.ID_Category " +
-        "ORDER BY Ingredient.NAME;"
+      "Ingredient.ID_ALLERGEN," +
+      "Allergen.NAME as NAMEA," +
+      "Allergen.ID_Category as Allergen_ID_Category, URL " +
+      "from `Ingredient` LEFT JOIN Allergen on Ingredient.ID_ALLERGEN=Allergen.ID_ALLERGEN LEFT JOIN A_Category ON Allergen.ID_Category=A_Category.ID_Category;"
       db.query(sql,(err,result)=>{
         if (err) {
           reject(err);
@@ -91,4 +90,28 @@ function deleteI(ID){
     }
   )
 }
-module.exports={create,deleteI,getAll,update,updateStock}
+function getAllIOS(){
+    return new Promise((resolve,reject) =>{
+            let sql="SELECT ID_INGREDIENT," +
+                "Ingredient.NAME as NAME,UNIT," +
+                "UNIT_PRICE," +
+                "STOCK," +
+                "JSON_OBJECT('ID',Ingredient.ID_Category," +
+                "'NAME',I_Category.NAME) as CATEGORY," +
+                "JSON_OBJECT('ID',Allergen.ID_ALLERGEN," +
+                "'NAME',Allergen.NAME," +
+                "'ID_Category',Allergen.ID_Category ,'URL',A_Category.URL) as ALLERGEN " +
+                "from `Ingredient` LEFT JOIN Allergen on Ingredient.ID_ALLERGEN=Allergen.ID_ALLERGEN LEFT JOIN A_Category ON Allergen.ID_Category=A_Category.ID_Category " +
+                "JOIN I_Category ON Ingredient.ID_Category = I_Category.ID_Category " +
+                "ORDER BY Ingredient.NAME;"
+            db.query(sql,(err,result)=>{
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(result);
+                }
+            })
+        }
+    )
+}
+module.exports={create,deleteI,getAll,update,updateStock,getAllIOS}
