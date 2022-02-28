@@ -7,7 +7,8 @@ const modelAllergen=require(path.join(__dirname,"../app/models/Allergen"))
 router.post("/createAllergen",(req,res)=>{
   console.log(req.body);
   modelAllergen.create(req.body.NAME,req.body.ID_Category).then((result)=>{
-      res.json(JSON.parse(JSON.stringify(result))[0]);
+
+      res.json({ID:result});
       res.status(201).end();
     }
   ).catch((e)=>{
@@ -18,7 +19,7 @@ router.post("/createAllergen",(req,res)=>{
 router.put("/updateAllergen",(req,res)=>{
   console.log(req.body);
   modelAllergen.update(req.body.ID,req.body.NAME,req.body.ID_Category).then((result)=>{
-      res.json(JSON.parse(JSON.stringify(result))[0]);
+      res.json({ID:result});
       res.status(201).end();
     }
   ).catch((e)=>{
