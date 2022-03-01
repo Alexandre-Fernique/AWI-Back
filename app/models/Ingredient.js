@@ -98,7 +98,7 @@ function getAllIOS(){
                 "STOCK," +
                 "JSON_OBJECT('ID_Category',Ingredient.ID_Category," +
                 "'NAME',I_Category.NAME) as CATEGORY," +
-                "JSON_OBJECT('ID',Allergen.ID_ALLERGEN," +
+                "JSON_OBJECT('ID_ALLERGEN',Allergen.ID_ALLERGEN," +
                 "'NAME',Allergen.NAME," +
                 "'ID_Category',Allergen.ID_Category ,'URL',A_Category.URL) as ALLERGEN " +
                 "from `Ingredient` LEFT JOIN Allergen on Ingredient.ID_ALLERGEN=Allergen.ID_ALLERGEN LEFT JOIN A_Category ON Allergen.ID_Category=A_Category.ID_Category " +
