@@ -17,9 +17,7 @@ router.post("/createAllergen",(req,res)=>{
   });
 })
 router.put("/updateAllergen",(req,res)=>{
-  console.log(req.body);
-  modelAllergen.update(req.body.ID,req.body.NAME,req.body.ID_Category).then((result)=>{
-      res.json({ID:result});
+  modelAllergen.update(req.body.ID,req.body.NAME,req.body.ID_Category).then(()=>{
       res.status(201).end();
     }
   ).catch((e)=>{

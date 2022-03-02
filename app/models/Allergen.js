@@ -30,6 +30,19 @@ function getAll(){
     }
   )
 }
+function update(ID,NAME,ID_Category){
+    return new Promise((resolve,reject) =>{
+            let sql="UPDATE `Allergen` SET NAME = ?,ID_Category = ? WHERE ID_ALLERGEN = ?;"
+            db.query(sql,[NAME,ID_Category,ID],(err)=>{
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve("Done")
+                }
+            })
+        }
+    )
+}
 
 function deleteA(ID){
   return new Promise((resolve,reject) =>{
@@ -44,4 +57,4 @@ function deleteA(ID){
     }
   )
 }
-module.exports={create,deleteA,getAll}
+module.exports={create,deleteA,getAll,update}
