@@ -40,12 +40,12 @@ router.get("/getIngredientIOS",(req,res)=>{
   modelIngredient.getAllIOS().then((result)=>{
     for (let i=0;i< result.length;i++){
       result[i].ALLERGEN = JSON.parse(result[i].ALLERGEN)
-      result[i].CATEGORY = JSON.parse(result[i].CATEGORY)
     }
     res.json(result);
     res.status(200).end();
   })
 })
+
 router.post("/deleteIngredient",(req,res)=>{
   console.log(req.body);
   modelIngredient.deleteI(req.body.ID).then(()=>{

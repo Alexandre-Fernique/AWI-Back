@@ -92,17 +92,15 @@ function deleteI(ID){
 }
 function getAllIOS(){
     return new Promise((resolve,reject) =>{
-            let sql="SELECT ID_INGREDIENT," +
+            let sql="SELECT ID_INGREDIENT as ID," +
                 "Ingredient.NAME as NAME,UNIT," +
                 "UNIT_PRICE," +
                 "STOCK," +
-                "JSON_OBJECT('ID_Category',Ingredient.ID_Category," +
-                "'NAME',I_Category.NAME) as CATEGORY," +
-                "JSON_OBJECT('ID_ALLERGEN',Allergen.ID_ALLERGEN," +
+                "Ingredient.ID_Category as ID_Category," +
+                "JSON_OBJECT('ID',Allergen.ID_ALLERGEN," +
                 "'NAME',Allergen.NAME," +
                 "'ID_Category',Allergen.ID_Category ,'URL',A_Category.URL) as ALLERGEN " +
                 "from `Ingredient` LEFT JOIN Allergen on Ingredient.ID_ALLERGEN=Allergen.ID_ALLERGEN LEFT JOIN A_Category ON Allergen.ID_Category=A_Category.ID_Category " +
-                "JOIN I_Category ON Ingredient.ID_Category = I_Category.ID_Category " +
                 "ORDER BY Ingredient.NAME;"
             db.query(sql,(err,result)=>{
                 if (err) {

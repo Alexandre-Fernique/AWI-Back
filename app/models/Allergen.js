@@ -18,7 +18,7 @@ function create(name,id_Category){
 }
 function getAll(){
   return new Promise((resolve,reject) =>{
-      let sql="SELECT ID_ALLERGEN,Allergen.NAME,Allergen.ID_Category,URL from `Allergen` JOIN A_Category ON Allergen.ID_Category=A_Category.ID_Category " +
+      let sql="SELECT ID_ALLERGEN as ID,Allergen.NAME,Allergen.ID_Category,URL from `Allergen` JOIN A_Category ON Allergen.ID_Category=A_Category.ID_Category " +
           "ORDER BY Allergen.NAME";
       db.query(sql,(err,result)=>{
         if (err) {
