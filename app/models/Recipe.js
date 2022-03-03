@@ -159,7 +159,7 @@ function deleteRecipe(ID) {
 
 function getAll(){
   let sql="SELECT  Recipe.ID_RECIPE,Recipe.NAME,Recipe.AUTHOR,Recipe.ID_Category, JSON_ARRAYAGG(RR.ID_STEP)  AS Recette, " +
-      "       JSON_ARRAYAGG(JSON_OBJECT('ID', Ingredient.ID_INGREDIENT,'NAME',Ingredient.NAME,'QUANTITY',QUANTITY,'UNIT',UNIT,'UNIT_PRICE', UNIT_PRICE,'ID_Category',Ingredient.ID_Category,'STOCK',FORMAT(STOCK, 3), " +
+      "       JSON_ARRAYAGG(JSON_OBJECT('ID', Ingredient.ID_INGREDIENT,'NAME',Ingredient.NAME,'QUANTITY',QUANTITY,'UNIT',UNIT,'UNIT_PRICE', UNIT_PRICE,'ID_Category',Ingredient.ID_Category,'STOCK',STOCK, " +
       "    'ALLERGEN',JSON_OBJECT('ID', Ingredient.ID_ALLERGEN,'NAME',Allergen.NAME,'ID_Category',Allergen.ID_Category,'URL',URL))) AS INGREDIENT " +
       "    FROM Recipe " +
       "    LEFT JOIN Recipe_Step on Recipe.ID_RECIPE = Recipe_Step.ID_RECIPE " +
@@ -205,7 +205,7 @@ async function getRecipById(id){
         "           'UNIT',UNIT, " +
         "           'UNIT_PRICE',ROUND(UNIT_PRICE, 3), " +
         "           'ID_Category',Ingredient.ID_Category, " +
-        "           'STOCK',FORMAT(STOCK, 3), " +
+        "           'STOCK',STOCK, " +
         "      'ALLERGEN',JSON_OBJECT('ID', Ingredient.ID_ALLERGEN, " +
         "          'NAME',Allergen.NAME, " +
         "          'ID_Category',Allergen.ID_Category, " +
@@ -291,7 +291,7 @@ async function getRecipById(id){
 }
 function getAllFiltered(filtre){
   let sql="SELECT  Recipe.ID_RECIPE,Recipe.NAME,Recipe.AUTHOR,Recipe.ID_Category, JSON_ARRAYAGG(RR.ID_STEP)  AS Recette, " +
-      "       JSON_ARRAYAGG(JSON_OBJECT('ID', Ingredient.ID_INGREDIENT,'NAME',Ingredient.NAME,'QUANTITY',QUANTITY,'UNIT',UNIT,'UNIT_PRICE', UNIT_PRICE,'ID_Category',Ingredient.ID_Category,'STOCK',FORMAT(STOCK, 3), " +
+      "       JSON_ARRAYAGG(JSON_OBJECT('ID', Ingredient.ID_INGREDIENT,'NAME',Ingredient.NAME,'QUANTITY',QUANTITY,'UNIT',UNIT,'UNIT_PRICE', UNIT_PRICE,'ID_Category',Ingredient.ID_Category,'STOCK',STOCK, " +
       "    'ALLERGEN',JSON_OBJECT('ID', Ingredient.ID_ALLERGEN,'NAME',Allergen.NAME,'ID_Category',Allergen.ID_Category,'URL',URL))) AS INGREDIENT " +
       "    FROM Recipe " +
       "    LEFT JOIN Recipe_Step on Recipe.ID_RECIPE = Recipe_Step.ID_RECIPE " +

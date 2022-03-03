@@ -27,7 +27,7 @@ function create(name,description,duration,ingredient){
 
 function getAll(){
   return new Promise((resolve, reject) =>{
-    let sql="SELECT Step.ID_STEP,Step.NAME AS NAME, DESCRIPTION, DURATION,JSON_ARRAYAGG(JSON_OBJECT('ID', Ingredient.ID_INGREDIENT,'NAME',Ingredient.NAME,'QUANTITY',FORMAT(QUANTITY,3),'UNIT',UNIT,'UNIT_PRICE', FORMAT(UNIT_PRICE,2),'ID_Category',Ingredient.ID_Category,'STOCK',FORMAT(STOCK,3)," +
+    let sql="SELECT Step.ID_STEP,Step.NAME AS NAME, DESCRIPTION, DURATION,JSON_ARRAYAGG(JSON_OBJECT('ID', Ingredient.ID_INGREDIENT,'NAME',Ingredient.NAME,'QUANTITY',QUANTITY,'UNIT',UNIT,'UNIT_PRICE', UNIT_PRICE,'ID_Category',Ingredient.ID_Category,'STOCK',STOCK," +
       "'ALLERGEN',JSON_OBJECT('ID', Ingredient.ID_ALLERGEN,'NAME',Allergen.NAME,'ID_Category',Allergen.ID_Category,'URL',URL))) INGREDIENT " +
       "FROM Step " +
       "LEFT JOIN Step_Ingredient on Step.ID_STEP=Step_Ingredient.ID_STEP " +

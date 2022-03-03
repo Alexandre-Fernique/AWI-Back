@@ -18,14 +18,13 @@ router.post("/createStep",(req,res)=>{
 router.get("/getStep",(req,res)=>{
   modelStep.getAll().then((result)=>{
     console.log(result)
-    let json=JSON.parse(JSON.stringify(result))
     let cpt=0;
-    for(let item of json){
-      json[cpt].INGREDIENT=JSON.parse(JSON.parse(JSON.stringify(item.INGREDIENT)));
+    for(let item of result){
+      result[cpt].INGREDIENT=JSON.parse(item.INGREDIENT);
 
       cpt++;
     }
-    res.json(JSON.parse(JSON.stringify(json)));
+    res.json(result);
     res.status(200).end();
   })
 })
